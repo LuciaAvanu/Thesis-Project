@@ -1,0 +1,10 @@
+<% layout('layouts/boilerplate-2') %>
+    <% console.log(announcement) %>
+        <div class="editing-container">
+
+            <form action="/announcements/<%=announcement._id%>?_method=PUT" method="POST">
+                <input class="textarea" type="text" name="title" placeholder="Titlu anunț " value="<%=announcement.title%>">
+                <textarea class="textarea" name="text" id="text" cols="130" rows="10"><%=announcement.text%></textarea>
+                <button class="blue-btn ann-btn">Modifică anunț</button>
+            </form>
+        </div>

@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="new-file-background">
+        <div class="content-wrapper">
+            <div class="left-side-img">
+                <img class="upload-img" src="/resources/file-transfer.svg" alt=""></div>
+
+            <div class="right-side-form">
+                <h1 class="big-title">Adaugă un nou fișier</h1>
+                <h2 class="under-text">Vă rugăm să introduceți detaliile noului document</h2>
+
+                <form class="log-reg-form new-form" action="/files/<%=currentUser._id%>" method="POST" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <label for="title">Titlu Document:</label>
+                        <input type="text" name="title" id="title" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="author">Nume Autor:</label>
+                        <input type="text" name="author" id="author" value="<%=currentUser.username%>" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="disc">Discplină:</label>
+                        <input type="text" name="disc" id="disc" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="year">An:</label>
+                        <input type="number" name="year" id="year" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="file">Alegeți fișierul: (max 10MB)</label>
+                        <input type="file" name="data" id="file">
+                    </div>
+
+                    <button class="submit-button new-file-btn">Încarcă</button>
+                </form>
+            </div>
+        </div>
+    </div>

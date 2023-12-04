@@ -1,0 +1,26 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="backdrop">
+        <div class="white-container">
+
+            <h1 class="big-title">Creează un cont nou</h1>
+            <h2 class="under-text">Vă rugăm să introduceți datele pentru a creea noul cont</h2>
+            <form class="log-reg-form" action="/register" method="POST">
+
+                <div>
+                    <input type="text" name="username" id="username" required placeholder="Nume utilizator">
+                </div>
+                <div>
+                    <input type="email" name="email" id="email" placeholder="Email (adresa furnizată de facultate)" pattern=".+@stud\.etti\.upb\.ro" required>
+                </div>
+                <div>
+                    <input type="password" name="password" id="password" placeholder="Parolă" required>
+                </div>
+
+                <button class="submit-button">Înregistrare</button>
+            </form>
+            <p class="align-bottom">Ai deja cont? <a class="blue-link" href="/login">Autentificare</a></p>
+
+
+        </div>
+    </div>

@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate-2') %>
+
+
+    <% console.log(file) %>
+
+        <div class="file-edit-backdrop">
+            <div class="file-editing-container new-form">
+                <h1 class="big-title">Editează fișierul</h1>
+                <h2 class="under-text">Vă rugăm să introduceți noile detalii ale fișierului</h2>
+
+                <form class="log-reg-form modify-file-form" action="/my-materials/<%=currentUser.username%>/edit/<%=file._id%>?_method=PUT" method="POST">
+
+                    <div class="form-row">
+                        <label for="title">Titlu Document:</label>
+                        <input type="text" name="title" id="title" value="<%=file.title%>">
+                    </div>
+                    <div class="form-row">
+                        <label for="author">Nume Autor:</label>
+                        <input type="text" name="author" id="author" value="<%=file.author%>">
+                    </div>
+                    <div class="form-row">
+                        <label for="disc">Discplină:</label>
+                        <input type="text" name="disc" id="disc" value="<%=file.disc%>">
+                    </div>
+                    <div class="form-row">
+                        <label for="year">An:</label>
+                        <input type="number" name="year" id="year" value="<%=file.year%>">
+                    </div>
+
+                    <button class="blue-btn modify-btn ">Modifică fișier</button>
+                </form>
+            </div>
+        </div>

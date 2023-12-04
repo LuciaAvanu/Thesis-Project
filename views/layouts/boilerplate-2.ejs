@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>ETTI.CONNECT</title>
+</head>
+
+<body>
+    <div id="files-page-main-container">
+
+        <div id="left-side-bar">
+            <header>
+                <p id="logo">ETTI.CONNECT</p>
+            </header>
+
+            <div class="user-wrapper">
+                <img class="user-icon" src="/resources/user-icon.png">
+                <p class="files-username">
+                    <%=currentUser.username%>
+                </p>
+            </div>
+
+
+            <div class="sidebar-links">
+                <a href="/announcements">Anunțuri</a>
+                <%if(currentUser.isTutore){%>
+                    <a href="/archive">Arhivă Anunțuri</a>
+                    <a href="/incoming">Mesaje Primite</a>
+                    <a href="/tutor-materials">Materiale</a>
+                    <a href="/my-materials/<%=currentUser.username%>">Materiale personale</a>
+                    <%} else {%>
+                        <a href="/chat">Conversații</a>
+                        <a href="/tutor-materials">Materiale Tutori</a>
+                        <a href="/files">Bibliotecă</a>
+                        <a href="/my-materials/<%=currentUser.username%>">Materiale personale</a>
+                        <%}%>
+
+
+            </div>
+            <a class="logout-btn blue-btn" href="/logout">Deconectare</a>
+
+        </div>
+
+        <div id="files-container">
+
+
+
+
+            <%- body %>
+
+        </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<% layout('layouts/boilerplate-2') %>
+
+    <div id="announcements-container">
+        <h2 class="big-title">Accesează unul din anunțuri pentru a vedea conținutul:</h2>
+
+
+        <% for(let announcement of announcements){  %>
+            <%if(!announcement.isArchived){%>
+                <div class="announcement-div">
+                    <a href="/announcements/view/<%=announcement._id%>" class="ann-title">
+                        <%=announcement.title%>
+                    </a>
+                    <p class="announcement-body faded-out fp-body">Postat de
+                        <% for(let user of users){
+                        if(user._id.toString() == announcement.author.toString()){ %>
+                            <%=user.username%>
+                                <%} }%>
+                                    , la data
+                                    <%=announcement.postedAt.date%>,
+                                        <%=announcement.postedAt.time%>
+                    </p>
+
+
+                    <%if(currentUser._id.toString() == announcement.author.toString()){%>
+                        <a href="/announcements/<%=announcement._id%>/edit" class="announcement-body blue-link">Modifică anunț</a>
+
+                        <form action="/announcements/<%=announcement._id%>/archive?_method=PUT" method="POST">
+                            <button class="delete-btn announcement-body green-link ">Arhivează</button>
+                        </form>
+
+                        <form action="/announcements/<%=announcement._id%>?_method=DELETE" method="POST">
+                            <button class="delete-btn announcement-body red-link ">Șterge</button>
+                        </form>
+                        <%}%>
+
+                </div>
+                <%}%>
+                    <%}%>
+
+
+                        <%if(currentUser.isTutore){%>
+                            <form action="/users/<%=currentUser._id%>/announcements" class="new-ann-form" method="POST">
+                                <input class="textarea" type="text" name="title" placeholder="Titlu anunț ">
+                                <textarea class="textarea " name="text" id="text" cols="130" rows="5" placeholder="Scrie textul anunțului tău aici "></textarea>
+                                <button class="blue-btn ann-btn ">Adaugă anunț</button>
+                            </form>
+                            <%}%>
+
+    </div>

@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate-2') %>
+
+
+    <div class="preview-container">
+        <header class="preview-header">
+            <h1 class="big-title">Previzualizati documentul
+                <%=file.title%>
+            </h1>
+
+
+
+            <%function spliceSlice(str, index, count, add) {
+                if (index < 0) {
+                index = str.length + index;
+                if (index < 0) {
+                index = 0;
+                }
+                }
+                
+                return str.slice(0, index) + (add || "") + str.slice(index + count);
+                }%>
+
+
+                <a class="download-btn" href="<%=spliceSlice(file.data.url, 49, 0, '/fl_attachment')%>" download="<%=file.title%>" target="_blank">Descarcă</a>
+        </header>
+
+
+        <div class="file-container">
+            <div class="details-container">
+                <p class="detail-element"><span class="detail-bold">Autor:</span> <span class="detail-content"><%=file.author%></span>
+
+                </p>
+                <p class="detail-element"><span class="detail-bold">Materie:</span>
+                    <span class="detail-content"><%=file.disc%></span>
+                </p>
+                <p class="detail-element"><span class="detail-bold">An de studiu:</span>
+                    <span class="detail-content"><%=file.year%></span>
+                </p>
+            </div>
+
+            <div class="document-preview-container">
+                <embed class="document-preview" src="<%=file.data.url%>" type="application/pdf">
+            </div>
+        </div>
+
+    </div>

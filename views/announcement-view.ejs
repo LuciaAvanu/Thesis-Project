@@ -1,0 +1,34 @@
+<% layout('layouts/boilerplate-2') %>
+
+
+    <div class="announcement-div">
+        <p class="ann-title-p">
+            <%=announcement.title%>
+        </p>
+
+        <p class="announcement-body faded-out fp-body">Postat de
+            <% for(let user of users){
+            if(user._id.toString() == announcement.author.toString()){ %>
+                <%=user.username%>
+                    <%} }%>
+                        , la data
+                        <%=announcement.postedAt.date%>,
+                            <%=announcement.postedAt.time%>
+        </p>
+        <p class="announcement-body">
+            <%=announcement.text%>
+        </p>
+
+        <%if(currentUser._id.toString() == announcement.author.toString()){%>
+            <a href="/announcements/<%=announcement._id%>/edit" class="announcement-body blue-link">Modifică anunț</a>
+
+            <form action="/announcements/<%=announcement._id%>/archive?_method=PUT" method="POST">
+                <button class="delete-btn announcement-body green-link ">Arhivează</button>
+            </form>
+
+            <form action="/announcements/<%=announcement._id%>?_method=DELETE" method="POST">
+                <button class="delete-btn announcement-body red-link ">Șterge</button>
+            </form>
+            <%}%>
+
+    </div>

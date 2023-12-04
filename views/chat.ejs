@@ -1,0 +1,47 @@
+<% layout('layouts/boilerplate-2') %>
+
+    <div class="options-container">
+        <h1 class="chat-title">Alege tutorele cu care vrei să discuți:</h1>
+
+        <% for (let user of users){
+    if(user.username == "Raluca Popescu"){
+        %>
+
+            <a class="tutor-wrapper" href="/chat/<%= user._id %>">
+                <img class="tutor-icon" src='/resources/icons/raluca.png' alt="">
+                <p class="tutor-name">Raluca Popescu</p>
+            </a>
+            <%}} %>
+
+
+
+                <% for (let user of users){
+    if(user.username == "Lucian Irimescu"){
+        %>
+                    <a class="tutor-wrapper" href="/chat/<%= user._id %>">
+                        <img class="tutor-icon" src='/resources/icons/lucian.png' alt="">
+                        <p class="tutor-name">Lucian Irimescu</p>
+                    </a>
+                    <%}} %>
+
+
+
+                        <% for (let user of users){
+    if(user.username == "Ioana Teodoru"){
+        %>
+                            <a class="tutor-wrapper" href="/chat/<%= user._id %>">
+                                <img class="tutor-icon" src='/resources/icons/ioana.png' alt="">
+                                <p class="tutor-name">Ioana Teodoru</p>
+                            </a>
+                            <%}} %>
+
+
+                                <% for (let user of users){
+if(user.username == "Andrei Ion"){
+%>
+                                    <a class="tutor-wrapper" href="/chat/<%= user._id %>">
+                                        <img class="tutor-icon" src='/resources/icons/andrei.png' alt="">
+                                        <p class="tutor-name">Andrei Ion</p>
+                                    </a>
+                                    <%}} %>
+    </div>

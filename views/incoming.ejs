@@ -1,0 +1,32 @@
+<% layout('layouts/boilerplate-2') %>
+
+    <h2 class="chat-title">Ai mesaje de la următorii utilizatori:</h2>
+    <% let receivedMessages =[]; 
+
+        for (let message of allMessages){
+            if(message.receiver.toString() == currentUser._id.toString()){
+receivedMessages.push(message)
+            }
+        } 
+        
+        let senders=[];
+for(let user of users){
+for(let message of receivedMessages){
+    if(message.sender.toString() == user._id.toString()){
+        senders.push(user)
+    }
+}
+}
+
+senders = [...new Set(senders)] //getting the unique senders
+for (let sender of senders){%>
+        <a class="tutor-wrapper student" href="/chat/<%= sender._id %>">
+            <img class="tutor-icon" src='/resources/icons/student.svg' alt="">
+            <p class="tutor-name">
+                <%=sender.username%>
+            </p>
+        </a>
+
+        <%}%>
+
+            %>

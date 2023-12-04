@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate') %>
+
+
+    <div class="backdrop">
+        <div class="white-container">
+            <h1 class="big-title">Autentificare</h1>
+            <h2 class="under-text">Vă rugăm să introduceți datele pentru a intra în cont</h2>
+
+
+            <form class="log-reg-form" action="/login" method="POST">
+                <div>
+
+                    <input type="text" name="username" id="username" required placeholder="Nume utilizator">
+                </div>
+
+                <div>
+
+                    <input type="password" name="password" id="password" placeholder="Parolă">
+                </div>
+
+
+                <button class="submit-button">Intră în cont</button>
+
+
+            </form>
+            <p class="align-bottom">Nu ai cont? <a class="blue-link" href="/register">Creează unul acum</a></p>
+        </div>
+    </div>

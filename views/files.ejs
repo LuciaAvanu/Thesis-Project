@@ -1,0 +1,80 @@
+<% layout('layouts/boilerplate-2') %>
+
+    <div class="top-bar">
+        <h2 class="big-title search-file">Introduceți mai multe detalii pentru o căutare mai rapidă:</h2>
+        <form action="#">
+            <div class="search-item">
+                <input class="top-bar-input" type="text" name="author" placeholder="autor">
+                <div class="margin-icon">
+                    <img src="/resources/icons/search.svg" alt="">
+                </div>
+            </div>
+
+            <div class="search-item">
+                <input class="top-bar-input" type="number" min="1" max="4" name="year" placeholder="an">
+                <div class="margin-icon">
+                    <img src="/resources/icons/search.svg" alt="">
+                </div>
+            </div>
+
+            <div class="search-item">
+                <input class="top-bar-input" type="text" name="disc" placeholder="materie">
+                <div class="margin-icon">
+                    <img src="/resources/icons/search.svg" alt="">
+                </div>
+            </div>
+            <button type="submit" class="search-btn">Caută</button>
+        </form>
+        <a class="announcement-body red-link all-files-link" href="/files">Toate fișierele</a>
+
+    </div>
+
+
+
+    <div class="file-gallery">
+        <% for(let file of files){  %>
+            <%if(file.author !== "Andrei Ion" && file.author !== "Raluca Popescu" && file.author !== "Ioana Teodoru" && file.author !== "Lucian Irimescu"){%>
+                <div class="file-wrapper">
+                    <p class="file-title">
+                        <%=file.title%>
+                    </p>
+
+                    <img class="document-img" src="/resources/icons/document.svg" alt="">
+
+                    <p class="file-author">Autor:
+                        <%=file.author%>
+                    </p>
+                    <p class="file-author">Materie:
+                        <%=file.disc%>
+                    </p>
+
+                    <a href="/preview/<%=file._id%>" class="blue-btn file-btn yellow">Previzualizare</a>
+
+
+                    <%function spliceSlice(str, index, count, add) {
+if (index < 0) {
+index = str.length + index;
+if (index < 0) {
+index = 0;
+}
+}
+
+return str.slice(0, index) + (add || "") + str.slice(index + count);
+}%>
+
+                        <a class="blue file-btn" href="<%=spliceSlice(file.data.url, 49, 0, '/fl_attachment')%>" download="<%=file.title%>" target="_blank">Descarcă</a>
+
+
+                </div>
+                <%}%>
+                    <%}%>
+    </div>
+
+
+
+
+
+
+
+    <div class="centering-div">
+        <a class="blue-btn add-material" href="/new">Încarcă un nou material</a></div>

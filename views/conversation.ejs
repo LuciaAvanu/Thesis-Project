@@ -1,0 +1,124 @@
+<% layout('layouts/boilerplate-2') %>
+    <!-- Aici avem acces la currentUser si la receiver -->
+
+    <div id="announcements-container messages-container">
+
+        <% for(let message of messages){ 
+                    if((message.receiver.toString() == currentUser._id.toString() && message.sender.toString() == receiver._id.toString()) || (message.sender.toString() == currentUser._id.toString() && message.receiver.toString() == receiver._id.toString())){
+                       %>
+
+
+
+            <!-- AFISARE O CULOARE -->
+
+
+
+            <%if(currentUser._id.toString() !== message.sender.toString()){%>
+                <div class="announcement-div blue-background">
+                    <p class="author">
+                        <%for (let user of users){ 
+                                if (user._id.toString() == message.sender.toString()){%>
+                            <%=user.username%>
+                                <%} }%>
+                    </p>
+                    <%
+                        let today = new Date();
+                        let currentTime = today.getTime(); //timpul curent in milisecunde
+
+                        //acum trebuie sa transform si data la care a fost trimis in milisecunde 
+                        let timeSentInMili = Date.parse( message.sentAt.date );
+
+                        let difference = currentTime - timeSentInMili;
+
+                        let TotalDays = Math.floor(difference / (1000 * 3600 * 24));
+
+
+                        if(TotalDays == 0){%>
+                        <p class="announcement-body faded-out">
+                            Trimis astăzi la ora
+                            <%=message.sentAt.time%>
+                        </p>
+                        <%} else if (TotalDays == 1){%>
+                            <p class="announcement-body faded-out">
+                                Trimis acum o zi
+                                <%=message.sentAt.time%>
+                            </p>
+                            <%} else {%>
+                                <p class="announcement-body faded-out">
+                                    Trimis acum
+                                    <%=TotalDays%> zile la ora
+                                        <%=message.sentAt.time%>
+                                </p>
+                                <%}%>
+                                    <p class="announcement-body">
+                                        <%= message.text%>
+                                    </p>
+
+                </div>
+
+
+
+                <!-- AFISARE ALTA CULOARE  -->
+
+                <%} else { %>
+                    <div class="announcement-div align-right">
+                        <p class="author">
+                            <%for (let user of users){ 
+                                if (user._id.toString() == message.sender.toString()){%>
+                                <%=user.username%>
+                                    <%} }%>
+                        </p>
+
+                        <%
+                        let today = new Date();
+                        let currentTime = today.getTime(); //timpul curent in milisecunde
+
+                        //acum trebuie sa transform si data la care a fost trimis in milisecunde 
+                        let timeSentInMili = Date.parse( message.sentAt.date );
+
+                        let difference = currentTime - timeSentInMili;
+
+                        let TotalDays = Math.floor(difference / (1000 * 3600 * 24));
+
+
+                        if(TotalDays == 0){%>
+                            <p class="announcement-body faded-out">
+                                Trimis astăzi la ora
+                                <%=message.sentAt.time%>
+                            </p>
+                            <%} else if (TotalDays == 1){%>
+                                <p class="announcement-body faded-out">
+                                    Trimis acum o zi
+                                    <%=message.sentAt.time%>
+                                </p>
+                                <%} else {%>
+                                    <p class="announcement-body faded-out">
+                                        Trimis acum
+                                        <%=TotalDays%> zile la ora
+                                            <%=message.sentAt.time%>
+                                    </p>
+                                    <%}%>
+
+                                        <p class="announcement-body">
+                                            <%= message.text%>
+                                        </p>
+
+                    </div>
+                    <%}%>
+
+
+
+
+
+
+                        <%}%>
+                            <%} %>
+
+    </div>
+
+
+
+    <form action="/chat/<%=receiver._id%>/send/<%=currentUser._id%>" method="POST">
+        <textarea class="textarea" name="text" id="text" cols="60" rows="5"></textarea>
+        <button class="blue-btn ann-btn">Trimite mesaj</button>
+    </form>
